@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column;justify-content: center;height: 100vh;width: 100wh;">
+        <form method="POST"  action="" enctype="multipart/form-data" class="form_wrap" style="width: min-content;align-self: center;">
+            <input type="file" name="form-reqs" id="form-reqs" class="form_inputfile">
+            <input id="button" type="submit">
+        </form>
+    <p id="text" style="color: white;background-color: black;min-width: 50px;
+    min-height: 50px;display: flex; align-items: center;justify-content: center;"></p>
+    <button id="button_2" style="align-self:center;padding: 30px;width: 250px;">=>ХОЧУ АНЕКДОТ&lt;=</button></div>
+    <script>
+        const callBackendAPI = async () => {
+        const response = await fetch('/express_backend');
+        const body = await response.json();
+
+        if (response.status !== 200) {
+        throw Error(body.message)
+        }
+        return body;
+        };
+
+        button.onclick = () => {
+            text.innerHTML = "загрузка...";
+        }
+        button_2.onclick = () => {
+            callBackendAPI().then(res => text.innerHTML = JSON.parse(res.a)[0]['anekdotscol']);
+        }
+    </script>
+</body>
+</html>

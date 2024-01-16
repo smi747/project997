@@ -1,0 +1,16 @@
+const {Sequelize} = require('sequelize');
+
+
+module.exports = function(sequelize) {
+    return sequelize.define("anekdots",
+    {
+        id: {type: Sequelize.SMALLINT.UNSIGNED, primaryKey: true},
+        anekdotscol: {type:Sequelize.STRING(500)}
+    },
+    {
+        timestamps: false,
+        tablename: 'anekdots',
+        freezeTableName: true
+    }
+    );
+}
